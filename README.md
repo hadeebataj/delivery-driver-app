@@ -1,4 +1,4 @@
-# Follow steps to install or floow live link : https://delivery-driver-aa02aih5x-hadeebataj.vercel.app/
+# Follow steps to install or follow live link : https://delivery-driver-aa02aih5x-hadeebataj.vercel.app/
 Clone `gh repo clone hadeebataj/delivery-driver-app`
 
 Install `yarn install`
