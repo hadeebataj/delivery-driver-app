@@ -34,7 +34,7 @@ const BottomNav: React.FC = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        minWidth: "100vw",
+        minWidth: "100%",
         maxWidth: "420px",
         margin: "0px auto",
       }}

@@ -11,6 +11,7 @@ const OrderDetailsPage: React.FC = () => {
   const { id } = useParams();
 
   const selectedOrder = orders.find((order) => order.orderDetails.id === id);
+  console.log(selectedOrder);
 
   return (
     <div style={{ maxWidth: "420px", margin: "0px auto" }}>
@@ -26,8 +27,12 @@ const OrderDetailsPage: React.FC = () => {
       />
       <ShowDirectionsButton />
       <UploadPhotoButton />
-      <FeedbackComponent />
-      <CompleteDeliveryButton />
+      <FeedbackComponent
+        feedbackRating={selectedOrder?.orderDetails.feedbackRating ?? 0}
+        isDelivered={selectedOrder?.isDelivered ?? false}
+        selectedFeedbackTypes={selectedOrder?.orderDetails.feedbackType}
+      />
+      {selectedOrder?.isDelivered ? null : <CompleteDeliveryButton />}
     </div>
   );
 };

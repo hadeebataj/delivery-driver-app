@@ -9,6 +9,39 @@ import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
 import RecordFeedbackDetails from "./RecordFeedbackDetails";
 
+type FeedbackComponentProps = {
+  // currentFeedback: {
+  //   isDelivered: boolean;
+  //   orderDetails: {
+  //     id: string;
+  //     clientName: string;
+  //     deliveredAt: string;
+  //     phoneNumber: string;
+  //     image: string;
+  //     deliverySlot: string;
+  //     addressLine1: string;
+  //     addressLine2: string;
+  //     numberOfPackages: number;
+  //     clientNote: string;
+  //     feedbackRating: number;
+  //     feedbackType: {
+  //       id: number;
+  //       type: string;
+  //       note?: string;
+  //     }[];
+  //   };
+  // };
+  feedbackRating: number;
+  isDelivered: boolean;
+  selectedFeedbackTypes:
+    | never[]
+    | (
+        | { id: number; type: string; note: string }
+        | { id: number; type: string; note?: undefined }
+      )[]
+    | undefined;
+};
+
 const StyledRating = styled(Rating)(({ theme }) => ({
   "& .MuiRating-iconEmpty .MuiSvgIcon-root": {
     color: theme.palette.action.disabled,
@@ -54,7 +87,11 @@ const IconContainer = (props: IconContainerProps) => {
   return <span {...other}>{customIcons[value].icon}</span>;
 };
 
-const FeedbackComponent: React.FC = () => {
+const FeedbackComponent: React.FC<FeedbackComponentProps> = ({
+  feedbackRating,
+  selectedFeedbackTypes,
+  isDelivered,
+}) => {
   return (
     <div>
       <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -73,13 +110,17 @@ const FeedbackComponent: React.FC = () => {
           <Typography variant="body2">How was your experience?</Typography>
           <StyledRating
             name="highlight-selected-only"
+            defaultValue={feedbackRating ?? 0}
             IconContainerComponent={IconContainer}
             getLabelText={(value: number) => customIcons[value].label}
             highlightSelectedOnly
             sx={{ margin: "12px" }}
           />
         </Paper>
-        <RecordFeedbackDetails />
+        <RecordFeedbackDetails
+          isDelivered={isDelivered}
+          selectedFeedbackTypes={selectedFeedbackTypes ?? undefined}
+        />
       </Box>
     </div>
   );

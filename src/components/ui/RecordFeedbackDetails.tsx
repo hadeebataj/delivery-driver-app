@@ -27,20 +27,34 @@ const MenuProps = {
   },
 };
 
-function getStyles(
+const getStyles = (
   type: string,
   feedbackType: readonly string[],
   theme: Theme
-) {
+) => {
   return {
     fontWeight:
       feedbackType.indexOf(type) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
   };
-}
+};
 
-const RecordFeedbackDetails: React.FC = () => {
+type RecordFeedbackDetailsProps = {
+  isDelivered: boolean;
+  selectedFeedbackTypes?:
+    | never[]
+    | (
+        | { id: number; type: string; note: string }
+        | { id: number; type: string; note?: undefined }
+      )[]
+    | undefined;
+};
+
+const RecordFeedbackDetails: React.FC<RecordFeedbackDetailsProps> = ({
+  isDelivered,
+  // selectedFeedbackTypes,
+}) => {
   const [feedbackType, setFeedbackType] = useState<string[]>([]);
   const theme = useTheme();
 
@@ -82,7 +96,10 @@ const RecordFeedbackDetails: React.FC = () => {
         <Typography variant="caption" color="black" align="left">
           (You can select multiple options)
         </Typography>
-        <FormControl sx={{ m: "12px 0px", width: "100%" }}>
+        <FormControl
+          sx={{ m: "12px 0px", width: "100%" }}
+          disabled={isDelivered}
+        >
           <InputLabel id="demo-multiple-name-label">Select</InputLabel>
           <Select
             labelId="demo-multiple-name-label"
@@ -99,6 +116,7 @@ const RecordFeedbackDetails: React.FC = () => {
               </Box>
             )}
             MenuProps={MenuProps}
+            disabled={isDelivered}
           >
             {feedbackTypes.map((type) => (
               <MenuItem
