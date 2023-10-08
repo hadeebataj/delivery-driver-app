@@ -2,7 +2,8 @@ import React from "react";
 import { Box, Paper, Typography } from "@mui/material";
 import CallMessageButtons from "./CallMessageButtons";
 
-type DeliveryItemCardProps = {
+type OrderItemCardProps = {
+  recordOrderId: (id: string) => void;
   isDelivered: boolean;
   orderDetails: {
     id: string;
@@ -14,7 +15,8 @@ type DeliveryItemCardProps = {
   };
 };
 
-const DeliveryItemCard: React.FC<DeliveryItemCardProps> = ({
+const OrderItemCard: React.FC<OrderItemCardProps> = ({
+  recordOrderId,
   isDelivered,
   orderDetails,
 }) => {
@@ -30,6 +32,7 @@ const DeliveryItemCard: React.FC<DeliveryItemCardProps> = ({
           margin: "4px auto",
         }}
         elevation={3}
+        onClick={() => recordOrderId(orderDetails.id)}
       >
         <Box sx={{ display: "flex", flexDirection: "row", padding: "12px" }}>
           <img
@@ -69,4 +72,4 @@ const DeliveryItemCard: React.FC<DeliveryItemCardProps> = ({
   );
 };
 
-export default DeliveryItemCard;
+export default OrderItemCard;

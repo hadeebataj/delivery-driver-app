@@ -2,7 +2,29 @@ import { Box, Paper, Typography } from "@mui/material";
 import React from "react";
 import CallMessageButtons from "./CallMessageButtons";
 
-const OrderDetailsCard: React.FC = () => {
+type OrderDetailsCardProps = {
+  id: string;
+  clientName: string;
+  addressLine1: string;
+  addressLine2: string;
+  numberOfPackages: number;
+  clientNote: string;
+  feedbackRating?: number;
+  feedbackType?: {
+    id: number;
+    type: string;
+    note: string;
+  }[];
+};
+
+const OrderDetailsCard: React.FC<OrderDetailsCardProps> = ({
+  id,
+  clientName,
+  addressLine1,
+  addressLine2,
+  numberOfPackages,
+  clientNote,
+}) => {
   return (
     <div>
       <Paper
@@ -15,13 +37,14 @@ const OrderDetailsCard: React.FC = () => {
           borderRadius: "12px",
           margin: "4px auto",
           maxWidth: 524,
+          backgroundColor: "#FAD597",
         }}
       >
         <Typography
           variant="subtitle1"
           sx={{ fontWeight: "bold", padding: "12px" }}
         >
-          WT06839-739-NW9
+          {id}
         </Typography>
         <Box
           sx={{
@@ -37,10 +60,16 @@ const OrderDetailsCard: React.FC = () => {
               alignItems: "flex-start",
             }}
           >
-            <Typography variant="h6">John Doe</Typography>
-            <Typography variant="body1">54 Windsor Road</Typography>
-            <Typography variant="body1">London NW96 7WE</Typography>
-            <Typography variant="subtitle1">Number of packages: 1</Typography>
+            <Typography variant="h6">{clientName}</Typography>
+            <Typography variant="body1" align="left">
+              {addressLine1}
+            </Typography>
+            <Typography variant="body1" align="left">
+              {addressLine2}
+            </Typography>
+            <Typography variant="subtitle1">
+              Number of packages: {numberOfPackages}
+            </Typography>
           </div>
           <div
             style={{
@@ -52,10 +81,9 @@ const OrderDetailsCard: React.FC = () => {
             <CallMessageButtons />
           </div>
         </Box>
-        <Box sx={{ padding: "12px" }}>
+        <Box sx={{ padding: "12px" }} hidden={!clientNote}>
           <Typography variant="body1" align="left">
-            Note: Leave the package at the doorstep and confirm by calling on
-            smart doorbell
+            Note: {clientNote}
           </Typography>
         </Box>
       </Paper>

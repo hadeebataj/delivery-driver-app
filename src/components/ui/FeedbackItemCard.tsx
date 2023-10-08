@@ -1,5 +1,7 @@
-import { Paper, Box, Typography, Skeleton } from "@mui/material";
-import React from "react";
+import { Paper, Box, Typography, Skeleton, IconButton } from "@mui/material";
+import ArrowCircleDownOutlinedIcon from "@mui/icons-material/ArrowCircleDownOutlined";
+import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined";
+import React, { useState } from "react";
 
 type FeedbackItemCardProps = {
   isFeedbackPositive: boolean;
@@ -11,6 +13,7 @@ type FeedbackItemCardProps = {
     image?: string;
     zipCode: string;
     address: string;
+    note: string;
   };
 };
 
@@ -18,6 +21,8 @@ const FeedbackItemCard: React.FC<FeedbackItemCardProps> = ({
   isFeedbackPositive,
   feedbackDetails,
 }) => {
+  const [isCardExpanded, setIsCardExpanded] = useState(false);
+
   return (
     <div>
       <Paper
@@ -32,7 +37,12 @@ const FeedbackItemCard: React.FC<FeedbackItemCardProps> = ({
         elevation={3}
       >
         <Box sx={{ display: "flex", flexDirection: "row", padding: "12px" }}>
-          <Skeleton variant="circular" width={68} height={68} />
+          <Skeleton
+            variant="circular"
+            width={68}
+            height={68}
+            sx={{ minWidth: 68 }}
+          />
           {/* <img src={feedbackDetails.image} height={68} width={68} /> */}
           <Box
             sx={{
@@ -48,17 +58,35 @@ const FeedbackItemCard: React.FC<FeedbackItemCardProps> = ({
             <Typography variant="subtitle2">
               {feedbackDetails.driverName}
             </Typography>
-            {isFeedbackPositive ? (
-              <Typography variant="caption">
-                Delivered at: {feedbackDetails.recordedOn}
-              </Typography>
-            ) : (
-              <Typography variant="caption">
-                ZIP Code: {feedbackDetails.zipCode}
-              </Typography>
-            )}
+
+            <Typography variant="caption">
+              ZIP Code: {feedbackDetails.zipCode}
+            </Typography>
+            <Typography
+              variant="body2"
+              hidden={!isCardExpanded}
+              align="left"
+              flexWrap={"wrap"}
+            >
+              {feedbackDetails.note}
+            </Typography>
           </Box>
-          {/* Expand to show more button */}
+          <div
+            style={{
+              display: "flex",
+              alignSelf: "flex-end",
+              justifySelf: "baseline",
+              marginLeft: "auto",
+            }}
+          >
+            <IconButton onClick={() => setIsCardExpanded((prev) => !prev)}>
+              {isCardExpanded ? (
+                <ArrowCircleUpOutlinedIcon />
+              ) : (
+                <ArrowCircleDownOutlinedIcon />
+              )}
+            </IconButton>
+          </div>
         </Box>
       </Paper>
     </div>

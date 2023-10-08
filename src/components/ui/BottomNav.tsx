@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import HomeOutlinedIcon from "@mui/icons-material/Home";
 import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
@@ -7,6 +8,23 @@ import SosOutlinedIcon from "@mui/icons-material/SosOutlined";
 
 const BottomNav: React.FC = () => {
   const [value, setValue] = React.useState(0);
+  const navigate = useNavigate();
+
+  const handleHomeClick = () => {
+    navigate("/");
+  };
+
+  const handleOrdersClick = () => {
+    navigate("/driver/orders");
+  };
+
+  const handleFeedbacksClick = () => {
+    navigate("/driver/feedbacks");
+  };
+
+  const handleHelpClick = () => {
+    navigate("/help");
+  };
 
   return (
     <div
@@ -26,16 +44,29 @@ const BottomNav: React.FC = () => {
           setValue(newValue);
         }}
       >
-        <BottomNavigationAction label="Home" icon={<HomeOutlinedIcon />} />
+        <BottomNavigationAction
+          onClick={handleHomeClick}
+          label="Home"
+          icon={<HomeOutlinedIcon />}
+        />
+
         <BottomNavigationAction
           label="Orders"
           icon={<LocalShippingOutlinedIcon />}
+          onClick={handleOrdersClick}
         />
+
         <BottomNavigationAction
           label="Feedbacks"
           icon={<ForumOutlinedIcon />}
+          onClick={handleFeedbacksClick}
         />
-        <BottomNavigationAction label="Help" icon={<SosOutlinedIcon />} />
+
+        <BottomNavigationAction
+          label="Help"
+          icon={<SosOutlinedIcon />}
+          onClick={handleHelpClick}
+        />
       </BottomNavigation>
     </div>
   );
