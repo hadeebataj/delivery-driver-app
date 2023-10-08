@@ -8,8 +8,6 @@ Run `yarn dev`
 Note: If default system mode is in dark more, please change browser mode to 'light mode' from inspect elements.
 
 ## Demo
-
-
 https://github.com/hadeebataj/delivery-driver-app/assets/61531844/d0337ef2-fb4a-4092-9020-e0aa2c5dbe48
 
 
