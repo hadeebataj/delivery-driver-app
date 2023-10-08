@@ -3,12 +3,14 @@ import React from "react";
 import CallMessageButtons from "./CallMessageButtons";
 
 type OrderDetailsCardProps = {
+  isDelivered: boolean;
   id: string;
   clientName: string;
   addressLine1: string;
   addressLine2: string;
   numberOfPackages: number;
   clientNote: string;
+  phoneNumber?: string;
   feedbackRating?: number;
   feedbackType?: {
     id: number;
@@ -18,12 +20,14 @@ type OrderDetailsCardProps = {
 };
 
 const OrderDetailsCard: React.FC<OrderDetailsCardProps> = ({
+  isDelivered,
   id,
   clientName,
   addressLine1,
   addressLine2,
   numberOfPackages,
   clientNote,
+  phoneNumber,
 }) => {
   return (
     <div>
@@ -37,7 +41,7 @@ const OrderDetailsCard: React.FC<OrderDetailsCardProps> = ({
           borderRadius: "12px",
           margin: "4px auto",
           maxWidth: 524,
-          backgroundColor: "#FAD597",
+          backgroundColor: `${isDelivered ? "#9BC07B" : "#FAD597"}`,
         }}
       >
         <Typography
@@ -78,7 +82,7 @@ const OrderDetailsCard: React.FC<OrderDetailsCardProps> = ({
               alignItems: "flex-end",
             }}
           >
-            <CallMessageButtons />
+            <CallMessageButtons phoneNumber={phoneNumber} />
           </div>
         </Box>
         <Box sx={{ padding: "12px" }} hidden={!clientNote}>

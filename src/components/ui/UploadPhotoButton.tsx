@@ -1,7 +1,7 @@
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import PublishOutlinedIcon from "@mui/icons-material/PublishOutlined";
-import React from "react";
+import React, { useState } from "react";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -16,9 +16,21 @@ const VisuallyHiddenInput = styled("input")({
 });
 
 const UploadPhotoButton: React.FC = () => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0] || null;
+    setSelectedFile(file);
+  };
+
   return (
     <div style={{ margin: "12px auto" }}>
       {/* show uploaded photos here */}
+      {selectedFile && (
+        <Typography variant="body2" color="black">
+          Selected File: {selectedFile.name}
+        </Typography>
+      )}
       <Button
         sx={{
           width: "100%",
@@ -38,7 +50,11 @@ const UploadPhotoButton: React.FC = () => {
         startIcon={<PublishOutlinedIcon />}
       >
         Upload Photo
-        <VisuallyHiddenInput type="file" />
+        <VisuallyHiddenInput
+          type="file"
+          onChange={handleFileChange}
+          accept=".png, .jpg, .jpeg"
+        />
       </Button>
     </div>
   );

@@ -8,10 +8,23 @@ import { useNavigate } from "react-router-dom";
 const OrderListPage: React.FC = () => {
   const [today, setToday] = useState(new Date());
   const navigate = useNavigate();
+  const [orderIdInput, setOrderIdInput] = useState("");
+  const [filteredOrders, setFilteredOrders] = useState(orders);
 
   useEffect(() => {
     setToday(new Date());
   }, []);
+
+  useEffect(() => {
+    filterOrders();
+  }, [orderIdInput]);
+
+  const filterOrders = () => {
+    const filtered = orders.filter((order) =>
+      order.orderDetails.id.includes(orderIdInput.toUpperCase())
+    );
+    setFilteredOrders(filtered);
+  };
 
   const onCardClick = (id: string) => {
     navigate(`/driver/orders/${id}`);
@@ -20,8 +33,17 @@ const OrderListPage: React.FC = () => {
   return (
     <div>
       <div>
-        <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Search with order ID" />
-        <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
+        <InputBase
+          sx={{ ml: 1, flex: 1 }}
+          placeholder="Search with order ID"
+          onChange={(e) => setOrderIdInput(e.target.value)}
+        />
+        <IconButton
+          type="button"
+          sx={{ p: "10px" }}
+          aria-label="search"
+          onClick={filterOrders}
+        >
           <SearchIcon />
         </IconButton>
       </div>
@@ -30,7 +52,7 @@ const OrderListPage: React.FC = () => {
         {today.toLocaleDateString()}
       </Typography>
 
-      {orders.map((order) => (
+      {filteredOrders.map((order) => (
         <OrderItemCard
           key={order.orderDetails.id}
           recordOrderId={onCardClick}

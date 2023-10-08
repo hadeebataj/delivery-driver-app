@@ -21,6 +21,8 @@ const OrderDetailsPage: React.FC = () => {
         addressLine2={selectedOrder?.orderDetails.addressLine2 ?? ""}
         numberOfPackages={selectedOrder?.orderDetails.numberOfPackages ?? 0}
         clientNote={selectedOrder?.orderDetails.clientNote ?? ""}
+        phoneNumber={selectedOrder?.orderDetails.phoneNumber ?? ""}
+        isDelivered={selectedOrder?.isDelivered ?? false}
       />
       <ShowDirectionsButton />
       <UploadPhotoButton />
