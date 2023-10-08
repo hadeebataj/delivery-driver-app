@@ -42,6 +42,7 @@ const BottomNav: React.FC = () => {
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
+          console.log(event);
         }}
       >
         <BottomNavigationAction

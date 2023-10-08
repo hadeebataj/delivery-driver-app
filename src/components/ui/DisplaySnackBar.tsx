@@ -21,6 +21,7 @@ const DisplaySnackBar: React.FC<DisplaySnackBarProps> = ({
     if (reason === "clickaway") {
       return;
     }
+    console.log(event);
 
     setOpen(false);
     isOpen = false;
