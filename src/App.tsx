@@ -12,11 +12,7 @@ const App: React.FC = () => {
     <>
       <Logo />
       <Routes>
-        <Route
-          index
-          path="/driver/"
-          element={<WelcomePage name="David Wilson" />}
-        />
+        <Route index path="/" element={<WelcomePage name="David Wilson" />} />
         <Route path="/driver/orders" element={<OrderListPage />} />
         <Route path={"/driver/orders/:id"} element={<OrderDetailsPage />} />
         <Route path="/driver/feedbacks" element={<FeedbacksListPage />} />

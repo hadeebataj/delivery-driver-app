@@ -11,7 +11,7 @@ const BottomNav: React.FC = () => {
   const navigate = useNavigate();
 
   const handleHomeClick = () => {
-    navigate("/driver/");
+    navigate("/");
   };
 
   const handleOrdersClick = () => {
