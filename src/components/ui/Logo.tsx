@@ -3,7 +3,7 @@ import React from "react";
 
 const Logo: React.FC = () => {
   return (
-    <Box>
+    <Box sx={{ maxWidth: "420px", margin: "0px auto" }}>
       <img
         src="/hived-logo-full.svg"
         height={80}

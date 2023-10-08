@@ -6,6 +6,8 @@ Install `yarn install`
 
 Run `yarn dev`
 
+Note: If default system mode is in dark more, please change browser mode to 'light mode' from inspect elements.
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

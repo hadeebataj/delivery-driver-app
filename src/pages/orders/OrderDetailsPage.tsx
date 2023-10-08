@@ -13,7 +13,7 @@ const OrderDetailsPage: React.FC = () => {
   const selectedOrder = orders.find((order) => order.orderDetails.id === id);
 
   return (
-    <div>
+    <div style={{ maxWidth: "420px", margin: "0px auto" }}>
       <OrderDetailsCard
         id={selectedOrder?.orderDetails.id ?? ""}
         clientName={selectedOrder?.orderDetails.clientName ?? ""}

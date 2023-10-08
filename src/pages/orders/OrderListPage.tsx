@@ -31,7 +31,7 @@ const OrderListPage: React.FC = () => {
   };
 
   return (
-    <div>
+    <div style={{ maxWidth: "420px", margin: "0px auto" }}>
       <div>
         <InputBase
           sx={{ ml: 1, flex: 1 }}

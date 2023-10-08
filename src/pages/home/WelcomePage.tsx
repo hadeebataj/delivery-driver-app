@@ -15,6 +15,8 @@ const WelcomePage: React.FC<DriverProps> = ({ name }) => {
         justifyContent: "center",
         alignItems: "center",
         height: "70vh",
+        maxWidth: "420px",
+        margin: "0px auto",
       }}
     >
       <Skeleton variant="circular" width={100} height={100} />

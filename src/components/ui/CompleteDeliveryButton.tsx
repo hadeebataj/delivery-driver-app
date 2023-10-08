@@ -4,7 +4,7 @@ import React from "react";
 
 const CompleteDeliveryButton: React.FC = () => {
   return (
-    <div>
+    <div style={{ maxWidth: "420px", margin: "0px auto" }}>
       <Button
         sx={{
           width: "100%",

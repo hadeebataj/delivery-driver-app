@@ -35,6 +35,8 @@ const BottomNav: React.FC = () => {
         alignItems: "center",
         justifyContent: "center",
         minWidth: "100vw",
+        maxWidth: "420px",
+        margin: "0px auto",
       }}
     >
       <BottomNavigation
@@ -44,6 +46,7 @@ const BottomNav: React.FC = () => {
           setValue(newValue);
           console.log(event);
         }}
+        sx={{ maxWidth: "420px", marginLeft: "-15px" }}
       >
         <BottomNavigationAction
           onClick={handleHomeClick}
