@@ -1,0 +1,16 @@
+export const feedbackTypes = [
+  "Perfect Delivery",
+  "On Time",
+  "Kind Customer",
+  "Aggressive Pets",
+  "Traffic",
+  "Accident",
+  "No Parking",
+  "Package Damaged",
+  "Vehicle Breakdown",
+  "Rain",
+  "Unruly Customer",
+  "Address Not Found",
+  "Incorrect/Missing Delivery Instructions",
+  "Customer Not Reachable",
+];
