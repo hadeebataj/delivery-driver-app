@@ -73,7 +73,6 @@ const FeedbackComponent: React.FC = () => {
           <Typography variant="body2">How was your experience?</Typography>
           <StyledRating
             name="highlight-selected-only"
-            defaultValue={3}
             IconContainerComponent={IconContainer}
             getLabelText={(value: number) => customIcons[value].label}
             highlightSelectedOnly

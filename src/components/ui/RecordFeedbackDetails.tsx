@@ -11,9 +11,10 @@ import {
   useTheme,
   Theme,
   Chip,
+  TextField,
 } from "@mui/material";
 import { feedbackTypes } from "../../data/feedbackData";
-import React from "react";
+import React, { useState } from "react";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -40,7 +41,7 @@ function getStyles(
 }
 
 const RecordFeedbackDetails: React.FC = () => {
-  const [feedbackType, setFeedbackType] = React.useState<string[]>([]);
+  const [feedbackType, setFeedbackType] = useState<string[]>([]);
   const theme = useTheme();
 
   const handleChange = (event: SelectChangeEvent<typeof feedbackType>) => {
@@ -53,16 +54,33 @@ const RecordFeedbackDetails: React.FC = () => {
     );
   };
 
-  // Will be displayed when negative feedbackType is selected
+  // This field is required(*) when negative feedbackType is selected
   const displayTextBox = () => {
-    return <></>;
+    return feedbackType.map((type) => (
+      <TextField
+        id="outlined-textarea"
+        label={`Enter your feedback for ${type}`}
+        placeholder={`Enter your feedback for ${type}`}
+        maxRows={2}
+        multiline
+        sx={{
+          display: "flex",
+          flex: "column",
+          margin: "8px 0px",
+          minWidth: "100%",
+        }}
+      />
+    ));
   };
 
   return (
-    <Paper elevation={1} sx={{ m: "8px 0px" }}>
+    <Paper elevation={1} sx={{ m: "8px 0px", marginBottom: "80px" }}>
       <Box sx={{ display: "flex", flexDirection: "column", margin: "12px" }}>
         <Typography variant="body2" color="black" align="left">
-          Select your feedback type
+          Select your feedback types
+        </Typography>
+        <Typography variant="caption" color="black" align="left">
+          (You can select multiple options)
         </Typography>
         <FormControl sx={{ m: "12px 0px", width: "100%" }}>
           <InputLabel id="demo-multiple-name-label">Select</InputLabel>
